@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>แบบทดสอบหัวใจ 💖</title>
+<style>
+body{
+  background:#ffe6f2;
+  font-family:sans-serif;
+  text-align:center;
+  padding:25px;
+}
+.page{display:none;}
+.box{
+  background:#fff;
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+button{
+  width:90%;
+  margin:8px auto;
+  padding:12px;
+  border:none;
+  border-radius:20px;
+  background:#ff4d88;
+  color:white;
+  font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+let page = 1;
+let score = 25;
+let wrong = 0;
+
+// แสดงหน้า
+function show(n){
+  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+  if(n === 26){
+    document.getElementById("score").innerText = score;
+    document.getElementById("wrong").innerText = wrong;
+  }
+  document.getElementById('p'+n).style.display='block';
+}
+
+// ใช้กับ 5 ข้อแรก (ตรวจคำตอบ)
+function check(correct){
+  if(!correct){
+    score--;
+    wrong++;
+  }
+  page++;
+  show(page);
+}
+
+// ใช้กับ 20 ข้อหลัง (ไม่ตรวจ)
+function next(){
+  page++;
+  show(page);
+}
+
+window.onload = ()=>show(1);
+</script>
+
+<!-- ===== 5 ข้อสำคัญ (มีถูก/ผิด) ===== -->
+
+<div id="p1" class="page"><div class="box">
+<h3>ข้อ 1 💕 ใครสำคัญกับเราที่สุด</h3>
+<button onclick="check(true)">เธอ</button>
+<button onclick="check(false)">เพื่อน</button>
+<button onclick="check(false)">โทรศัพท์</button>
+</div></div>
+
+<div id="p2" class="page"><div class="box">
+<h3>ข้อ 2 💖 ถ้าเหนื่อย เราอยากอยู่กับใคร</h3>
+<button onclick="check(false)">ใครก็ได้</button>
+<button onclick="check(true)">เธอ</button>
+<button onclick="check(false)">อยู่คนเดียว</button>
+</div></div>
+
+<div id="p3" class="page"><div class="box">
+<h3>ข้อ 3 🥰 เวลาคิดถึง จะคิดถึงอะไร</h3>
+<button onclick="check(false)">ของกิน</button>
+<button onclick="check(true)">รอยยิ้มเธอ</button>
+<button onclick="check(false)">เพลง</button>
+</div></div>
+
+<div id="p4" class="page"><div class="box">
+<h3>ข้อ 4 💌 ถ้าต้องเลือก จะเลือกอะไร</h3>
+<button onclick="check(false)">เงิน</button>
+<button onclick="check(true)">เธอ</button>
+<button onclick="check(false)">เวลา</button>
+</div></div>
+
+<div id="p5" class="page"><div class="box">
+<h3>ข้อ 5 🌸 อนาคตอยากมีอะไรที่สุด</h3>
+<button onclick="check(true)">มีเธอ</button>
+<button onclick="check(false)">ชื่อเสียง</button>
+<button onclick="check(false)">ความรวย</button>
+</div></div>
+
+<!-- ===== 20 ข้ออิสระ (ตอบอะไรก็ได้ แต่เป็นคำถามจริง) ===== -->
+
+<script>
+const freeQuestions = [
+"วันนี้เธอรู้สึกยังไง",
+"ตอนนี้คิดถึงอะไร",
+"สิ่งที่ทำให้ยิ้มได้ง่ายที่สุด",
+"ถ้าเหนื่อยอยากทำอะไร",
+"ชอบช่วงเวลาไหนที่สุด",
+"เพลงที่ฟังแล้วนึกถึงใคร",
+"ของที่เห็นแล้วอบอุ่นใจ",
+"ถ้าให้เลือกที่หนึ่งที่อยากไป",
+"สิ่งเล็ก ๆ ที่มีความหมาย",
+"คำพูดที่อยากได้ยิน",
+"ช่วงเวลาที่ชอบที่สุดของวัน",
+"สิ่งที่ทำให้ใจสงบ",
+"ถ้าให้เลือกหนึ่งอย่างตอนนี้",
+"คนที่ทำให้รู้สึกปลอดภัย",
+"สีที่เข้ากับความรู้สึกตอนนี้",
+"อยากบอกอะไรกับเรา",
+"รอยยิ้มแบบไหนที่ชอบ",
+"สิ่งที่อยากรักษาไว้",
+"ถ้าวันนี้มีพรหนึ่งข้อ",
+"คำหนึ่งคำที่แทนใจตอนนี้"
+];
+
+const answers = [
+["มีความสุข","เฉย ๆ","คิดถึง"],
+["เรา","ตัวเอง","อนาคต"],
+["รอยยิ้ม","เสียงหัวเราะ","ความทรงจำ"],
+["พักผ่อน","ฟังเพลง","อยู่เงียบ ๆ"],
+["ตอนเย็น","กลางคืน","ตอนเช้า"],
+["เพลงรัก","เพลงช้า","เพลงสบาย"],
+["ข้อความ","รูปถ่าย","เสียง"],
+["ทะเล","บ้าน","ที่เงียบ ๆ"],
+["คำพูด","การกระทำ","ความตั้งใจ"],
+["ไม่เป็นไร","เรารักเธอ","อยู่ด้วยกันนะ"],
+["กลางคืน","ตอนฝนตก","ก่อนนอน"],
+["เสียงเพลง","ลมหายใจ","ความเงียบ"],
+["กอด","ยิ้ม","คำพูดดี ๆ"],
+["เธอ","ครอบครัว","ตัวเอง"],
+["ชมพู","ฟ้า","ขาว"],
+["ขอบคุณ","คิดถึง","รักนะ"],
+["อบอุ่น","จริงใจ","สดใส"],
+["ความทรงจำ","ความรู้สึก","สัญญา"],
+["ขอให้มีความสุข","ขอให้ยิ้ม","ขอให้ปลอดภัย"],
+["รัก","คิดถึง","อบอุ่น"]
+];
+
+for(let i=0;i<20;i++){
+  document.write(`
+  <div id="p${i+6}" class="page"><div class="box">
+  <h3>ข้อ ${i+6} 💖 ${freeQuestions[i]}</h3>
+  <button onclick="next()">${answers[i][0]}</button>
+  <button onclick="next()">${answers[i][1]}</button>
+  <button onclick="next()">${answers[i][2]}</button>
+  </div></div>
+  `);
+}
+</script>
+
+<!-- ===== สรุป ===== -->
+<div id="p26" class="page">
+  <div class="box">
+    <h1>💖 สรุปผล 💖</h1>
+    <p>คะแนนคงเหลือ: <b><span id="score"></span></b> / 25</p>
+    <p>ตอบผิดในข้อสำคัญ: <b><span id="wrong"></span></b> ข้อ</p>
+    <p>
+      ไม่ว่าคำตอบจะเป็นยังไง  
+      <br><br>
+      <strong>เราดีใจที่เธอตอบทุกข้อ 🥰</strong>
+      <p style="margin-top:15px;">
+  📸 กรุณาแคปหน้าจอผลลัพธ์หน้านี้ แล้วส่งมาให้เราด้วยนะ
+</p>
+
+<h3 style="color:#ff4d88;">
+  รักคนที่ชื่ออิ้ง อายุ 15 มากๆ 💖
+</h3>
+    </p>
+  </div>
+</div>
